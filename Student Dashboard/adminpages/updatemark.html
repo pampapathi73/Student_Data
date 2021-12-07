@@ -1,0 +1,105 @@
+<html>
+
+<head>
+  <title>Update Record</title>
+  <link rel="stylesheet" href="../css/updatemark.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Flamenco" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="row clearfix">
+        <ul class="main-nav" animate slideInDown>
+          <li><a href="..//loginpages/index.html"><b>HOME</b></a></li>
+          <li><a href="..//adminpages/aboutus.html"><b>ABOUT</b></a></li>
+          <li><a href="../adminpages/contactus.html"><b>CONTACT</b></a></li>
+          <li class="logout"><a href="../adminpages/admindash.html"><b>DASHBOARD</b></a></li>
+
+        </ul>
+      </div>
+    </nav>
+    <div class="main-content-header">
+      <form action="edit.html">
+        <table class="table1">
+          <h1 align="center">Search Student and Update</h1>
+          <tr align="left">
+            <th>enter id : </th>
+            <td><input type="text" name="id" class="box" id="Id" /></td>
+          </tr>
+          <tr align="left">
+            <th><input type="button" value="Search" name="submit" class="submit" id="submit" onclick="validate();" />
+            </th>
+          </tr>
+
+        </table>
+        <table class="table2">
+          <tr>
+            <th class="student_id">Id</th>
+            <th class="student_class">Name</th>
+            <th class="student_class">Class</th>
+            <th class="student_class">Gender</th>
+            <th class="student_class">Address</th>
+            <th class="student_class">Phone</th>
+            <th class="student_class">Grade</th>
+            <th class="student_edit">Edit</th>
+          </tr>
+          </thead>
+          <tbody id="data">
+
+          </tbody>
+        </table>
+        <label>Name</label>
+        <input type="text" value="" id="name1">
+        <label>Edit</label>
+        <a href="../adminpages/edit.html">
+          <button>Click Me</button>
+        </a>
+      </form>
+    </div>
+  </header>
+
+</body>
+<script>
+  function validate() {
+    console.log(1)
+    console.log("calling validate");
+    var Id = document.getElementById("Id").value;
+    console.log(2)
+
+    fetch('http://localhost:3001/student ')
+      .then(response => response.json())
+      .then(json => {
+        var first;
+        console.log(first, "value get")
+        var authenticate = false;
+        Object.keys(json).forEach(id => {
+
+          console.log(json[id])
+
+
+          console.log(json[id].name)
+          if (json[id].id == Id) {
+            authenticate = true;
+            first = json[id].name;
+          }
+
+        })
+        if (authenticate == true) {
+          document.getElementById("name1").setAttribute('value', first)
+
+          alert("validate get id")
+
+        } else {
+
+          alert("id is not available")
+
+        }
+      })
+
+  }
+</script>
+
+</html>

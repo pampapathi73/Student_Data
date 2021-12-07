@@ -1,0 +1,31 @@
+{
+  "student": [
+    {
+      "name": "pampapathi",
+      "class": "10th",
+      "rollno": "123",
+      "gender": "male",
+      "phoneno": "7022793097",
+      "address": "bangalore",
+      "grade": "A"
+    },
+    {
+      "name": "vinayak",
+      "class1": "15",
+      "address": "honnavar",
+      "gender": "male",
+      "number": "895671235",
+      "grade": "A",
+      "id": "1254"
+    },
+    {
+      "name": "mounesha",
+      "class1": "9",
+      "address": "agasanur",
+      "gender": "male",
+      "number": "7760950783",
+      "grade": "a",
+      "id": "589"
+    }
+  ]
+}

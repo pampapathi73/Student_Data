@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <title>Login here</title>
+
+    <link rel="stylesheet" href="../css/login.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Flamenco" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="row clearfix">
+                <ul class="main-nav" animate slideInDown>
+                    <li><a href="../loginpages/index.html">HOME</a></li>
+                    <li><a href="../adminpages/aboutus.html">ABOUT</a></li>
+                    <li><a href="../adminpages/contactus.html">CONTACT</a></li>
+
+                </ul>
+            </div>
+        </nav>
+        <div class="login-content-header">
+            <form id="form-login" action="../adminpages/admindash.html" method="get">
+                <h1 class="login_heading">Admin Login</h1>
+                <table class="form1">
+                    <tr>
+                        <th>Username </th>
+                        <td class="table"><input type="text" name="username" placeholder="Enter Username" class="field1"
+                                id="username" /></td>
+                    </tr>
+                    <tr>
+                        <th>Password </th>
+                        <td class="table"><input type="password" name="password" placeholder="Enter Password"
+                                class="field1" id="password" /></td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="2"><input type="button" name="submit" value="Login" class="submit"
+                                id="submit" onclick="validate();" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </header>
+</body>
+<script>
+    function validate() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        fetch('http://localhost:3000/admin')
+            .then(response => response.json())
+            .then(json => {
+                var authenticate = false;
+                Object.keys(json).forEach(id => {
+
+                    console.log(json[id])
+                    console.log(json[id].username)
+                    if (username == json[id].username && password == json[id].password) {
+                        authenticate = true;
+                    }
+                })
+                if (authenticate == true) {
+                    window.location.href = "../adminpages/admindash.html"
+                } else {
+
+                    alert("Login failed please type correct username and password")
+
+                }
+            })
+    }
+</script>
+
+</html>

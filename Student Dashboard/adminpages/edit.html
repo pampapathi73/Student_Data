@@ -1,0 +1,110 @@
+<html>
+
+<head>
+    <title>edit student</title>
+    <link rel="stylesheet" href="../css/addmark.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Flamenco" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="row clearfix">
+                <ul class="main-nav" animate slideInDown>
+                    <li class="logout"><a href="admindash.html">Dashboard</a></li>
+                    <li><a href="../loginpages/index.html">Home</a></li>
+                    <li><a href="../adminpages/aboutus.html">About</a></li>
+                    <li><a href="../adminpages/contactus.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="main-content-header">
+            <h2> edit Details of Student</h2>
+            <form id="form1" method="post" action="../adminpages/allstudentdata.html">
+                <table class="table1">
+                    <tr>
+                        <th>Name </th>
+                        <th> Class</th>
+                        <th>ID</th>
+                    </tr>
+                    <tr>
+                        <td><input id="name" type='text' name='name' placeholder='name' required class="box" /></td>
+                        <td><input id="class" type='text' name='class' placeholder='class' required class="box" /></td>
+                        <td><input id="id" type='text' name='rollno' placeholder='id' required class="box" /></td>
+
+                    </tr>
+                </table>
+                <table class="table2">
+                    <tr>
+                        <th> </th> Address <th> Gender</th>
+                        <th>Mobile No</th>
+                        <th>Grade</th>
+                    </tr>
+                    <tr>
+                        <td><input id="address" type='text' name='address' placeholder="Address" required class="box" />
+                        </td>
+                        <td><input id="gender" type='text' name='gender' placeholder="Gender" required class="box" />
+                        </td>
+                        <td><input id="number" type='text' name='mobile' placeholder='MobileNo' required class="box" />
+                        </td>
+                        <td><input id="grade" type='text' name='grade' placeholder='Grade' required class="box" /></td>
+                    </tr>
+
+                </table>
+
+                <table class="table3">
+                    <tr>
+                        <td align="center" colspan="2"><input type="submit" name="submit1" value="update"
+                                class="next_Step" /></td>
+                    </tr>
+                </table>
+
+                <script>
+                    var form = document.getElementById('form1')
+
+                    form.addEventListener('submit', function (e) {
+                        e.preventDefault()
+                        var name = document.getElementById('name').value
+                        var class1 = document.getElementById('class').value
+                        var id = document.getElementById('id').value
+                        var address = document.getElementById('address').value
+                        var gender = document.getElementById('gender').value
+                        var number = document.getElementById('number').value
+                        var grade = document.getElementById('grade').value
+                        const api = 'http://localhost:3001/student';
+
+                        fetch(`${api}/${id}`, {
+                            method: 'PUT',
+                            body: JSON.stringify({
+
+                                name: name,
+                                class1: class1,
+                                address: address,
+                                gender: gender,
+                                number: number,
+                                grade: grade,
+
+                            }),
+                            headers: {
+                                "Content-Type": "application/json; charset=UTF-8"
+                            }
+                        })
+                            .then(function (response) {
+                                return response.json()
+                            })
+                            .then(function (data) {
+                                console.log(data)
+
+                            })
+                    })
+
+                </script>
+            </form>
+        </div>
+    </header>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<html>
+
+<head>
+  <title>All Student Detail</title>
+  <link rel="stylesheet" href="../css/allstudentdata.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Flamenco" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="row clearfix">
+        <ul class="main-nav" animate slideInDown>
+          <li><a href="../loginpages/index.html"><b>HOME</b></a></li>
+          <li><a href="../adminpages/aboutus.html"><b>ABOUT</b></a></li>
+          <li><a href="../adminpages/contactus.html"><b>CONTACT</b></a></li>
+          <li class="logout"><a href="../adminpages/admindash.html"><b>ADMIN DASHBOARD</b></a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="main-content-header">
+      <h2>Student Record</h2>
+      <form>
+
+        <table>
+          <tr>
+            <th class="id_h1">Id </th>
+            <th class="name_h1">Name </th>
+            <th class="class_h1">Class </th>
+            <th class="gender_h1">Gender</th>
+            <th class="address_h1">Address</th>
+            <th class="phone_h1">Phone</th>
+            <th class="grade_h1">Grade</th>
+          </tr>
+          </thead>
+          <tbody id="data">
+
+          </tbody>
+
+        </table>
+        <script>
+          fetch('http://localhost:3001/student')
+            .then(
+              res => {
+                res.json().then(
+                  data => {
+                    console.log(data);
+                    if (data.length > 0) {
+                      var temp = " ";
+                      // for loop
+                      data.forEach((u) => {
+                        temp += "<tr>";
+                        temp += "<td>" + u.id + "</td>";
+                        temp += "<td>" + u.name + "</td>";
+                        temp += "<td>" + u.class1 + "</td>";
+                        temp += "<td>" + u.gender + "</td>";
+                        temp += "<td>" + u.address + "</td>";
+                        temp += "<td>" + u.number + "</td>";
+                        temp += "<td>" + u.grade + "</td></tr>";
+
+
+                      })
+                      document.getElementById("data").innerHTML = temp;
+                    }
+                  }
+                )
+              }
+            )
+        </script>
+      </form>
+    </div>
+  </header>
+
+</body>
+
+</html>

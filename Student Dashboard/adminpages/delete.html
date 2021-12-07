@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <title>Delete student</title>
+    <link rel="stylesheet" href="../css/updatemark.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Flamenco" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="row clearfix">
+                <ul class="main-nav" animate slideInDown>
+                    <li><a href="../loginpages/index.html">Home</a></li>
+                    <li><a href="../adminpages/aboutus.html">About Us</a></li>
+                    <li><a href="../adminpages/contactus.html">Contact Us</a></li>
+                    <li class="logout"><a href="../adminpages/admindash.html">Dashboard</a></li>
+
+                </ul>
+            </div>
+        </nav>
+        <div class="main-content-header">
+            <form action="../adminpages/delete1.html">
+                <table class="table1">
+                    <h1 align="center">Search Student and Delete </h1>
+                    <tr>
+
+                        <th>Student id</th>
+                        <td><input type="text" name="id" id="Id" /></td>
+                        <th><input type="button" value="search" name="submit" class="submit" onclick="validate();" />
+                        </th>
+                    </tr>
+                </table>
+                <label>Name</label>
+                <input type="text" value="" id="name1">
+                <label>Delete</label>
+                <a href="..//adminpages/delete1.html">
+                    <button>Click Me</button>
+                </a>
+            </form>
+        </div>
+    </header>
+
+</body>
+<script>
+    function validate() {
+        console.log(1)
+        console.log("calling validate");
+        var Id = document.getElementById("Id").value;
+        console.log(2)
+
+        fetch('http://localhost:3001/student ')
+            .then(response => response.json())
+            .then(json => {
+                var first;
+                console.log("first");
+                var authenticate = false;
+                Object.keys(json).forEach(id => {
+
+                    console.log(json[id])
+
+
+                    console.log(json[id].name)
+                    if (json[id].id == Id) {
+                        authenticate = true;
+                        first = json[id].name;
+                    }
+
+                })
+                if (authenticate == true) {
+                    document.getElementById("name1").setAttribute('value', first)
+
+                    alert("valid id")
+
+                } else {
+
+                    alert("invalid id ")
+
+                }
+            })
+
+    }
+</script>
+
+</html>

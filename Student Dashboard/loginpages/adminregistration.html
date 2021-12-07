@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../css/adminregister.css" type="text/css">
+
+<link href="https://fonts.googleapis.com/css?family=Flamenco" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+</head>
+<body>
+     <header>
+        <nav>
+          <div class="row clearfix">
+              <ul class="main-nav" animate slideInDown>
+                  <li><a href="../loginpages/index.html">HOME</a></li>
+                  <li><a href="../adminpages/aboutus.html">ABOUT</a></li>
+                  <li><a href="../adminpages/contactus.html">CONTACT</a></li>
+                  
+                  <li><a href="../loginpages/adminregistration.html">ADMINREGISTRATION</a></li>
+            </ul>
+          </div>
+        </nav>    
+       
+        <div class="rigister-content-header">
+          <form id="form2"    method="POST" action="E:\Student Dashboard\loginpages\login.html">
+            <h1 class="login_heading">Admin registration</h1>
+            <table class="form1">
+             <tr>
+             <th>name</th>
+             <td class="table"><input type="text" name="name" placeholder="enter name" class="field1" id="Name"/></td>  
+             </tr> 
+             <th>id</th>
+             <td class="table"><input type="number" name="id" placeholder="enter id" class="field1" id="id"/></td>  
+             </tr> 
+             <th>username</th>
+             <td class="table"><input type="text" name="username" placeholder="username" class="field2" id="userName"/></td>  
+             </tr>
+             <th>uniq name</th>
+             <td class="table"><input type="text" name="username" placeholder="uniu name" class="field3" id="UniqName"/></td>  
+             </tr>
+             <th>password</th>
+             <td class="table"><input type="text" name="password" placeholder="Enter password" class="Password" id="Password"/></td>  
+            </tr> 
+             <tr>
+              <td align="center" colspan="2"><input type="submit"  value="register" class="submit"/></td> 
+             </tr>
+            </table>
+           </form>
+          
+          </div>    
+        </header>  
+        
+
+</body>
+<script>
+  var form = document.getElementById('form2')
+
+form.addEventListener('submit',function(e){
+  e.preventDefault()
+  var name = document.getElementById('Name').value
+  var username = document.getElementById('userName').value
+  var uniqname = document.getElementById('UniqName').value
+  var password = document.getElementById('Password').value
+  var id = document.getElementById('id').value
+var link = "http://localhost:3000/admin";
+  fetch(link,{
+    method: 'POST',
+    body:JSON.stringify({
+      id : id,
+      name :name,
+      username:username,
+      uniqname:uniqname,
+      password:password,
+
+    }),
+    headers:{
+      "Content-Type":"application/json; charset=UTF-8"
+    }
+  })
+  .then(function(response){
+    return response.json()
+  })
+  .then(function(data){
+    console.log(data)
+    window.location.href = "login.html";
+   
+  })
+})
+
+</script>
+
+
+</html>
